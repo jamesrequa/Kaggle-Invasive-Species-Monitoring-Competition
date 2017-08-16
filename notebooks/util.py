@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import cv2
-import bcolz
 from keras.models import Model
 from keras.applications.inception_v3 import InceptionV3
 from keras.layers import Dense, Input, Flatten, Dropout, GlobalAveragePooling2D
@@ -10,10 +9,6 @@ from batch_renorm import BatchRenormalization
 from keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
 from keras.optimizers import Adam, SGD
 from sklearn import metrics
-
-# Create functions to save and load tensor arrays.
-def save_array(fname, arr): c=bcolz.carray(arr, rootdir=fname, mode='w'); c.flush()
-def load_array(fname): return bcolz.open(fname)[:]
 
 
 def load_train():
